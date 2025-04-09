@@ -1,0 +1,33 @@
+1. In Lotto 6/58, your goal is to get all 6 numbers in any order. What is the probability of getting all of the numbers correctly (Hint: Use Hypergeometric Distribution).
+a. 100%
+b. 0.0000
+c. 0.50
+d. 1%
+Correct Answer: 0.0000 or 0.00%
+
+2. What is the purpose of str.title() function in python?
+a. to capitalize the first letter of every word
+b. to find the first word
+c. to assign a text as a name of a file
+d. "Harry Potter"
+Correct Answer: to capitalize the first letter of every word
+
+3. If the ball with a mass of 2g is moving at 3m/s collides to a 1.2g bird that is flying with a velocity of 4.5m/s. What is the velocity after collision?
+a. physics whyy
+b. there are unkown data
+c. the bird change its direction to avoid colission
+d. the bird plays basketball and shoots the ball
+Correct Answer: 3.56 m/s
+
+4. Which of the following is the first thing that comes to your mind when you here "python"?
+a. a type of snake
+b. programming language
+c. print("Hello World")
+d. python
+Correct Answer: All choices are valid
+
+5. "Python" what string funtion is used?
+a. title
+b. lower
+c. str.title()
+d. int.upper()
