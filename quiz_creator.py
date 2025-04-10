@@ -19,7 +19,9 @@ def format(num):
 
     text_file = open("text_file.txt", "a")
 
+    text_file.write("\n=============================================")
     text_file.write(f"\n{num}. {question}\n\na. {option_a}\nb. {option_b}\nc. {option_c}\nd. {option_d}\nCorrect Answer: {correct_ans}\n")
+    text_file.write("=============================================\n")
 
     text_file.close()
 
