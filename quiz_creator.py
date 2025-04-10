@@ -16,6 +16,14 @@ def valid_input(correct_letter):
         else:
             print("Invalid input, try again")
 
+def yes_no_input():
+    while True:
+        again = input("Do you want to add another question? (yes/no): ").lower()
+        if again in ["yes", "no"]:
+            return again  # Return the valid input to use outside
+        else:
+            print("Invalid input. Try (yes/no)")
+
 #list of messages
 messages = [
     "Nice question you have there", 
@@ -82,7 +90,7 @@ def format(num):
 num = 1
 while True:
     format(num)
-    again = input("\nAdd another question? (yes/no): ").lower()
+    again = yes_no_input()  # Get the result from the function
     num += 1
     if again != "yes":
         break
