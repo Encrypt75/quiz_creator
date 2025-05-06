@@ -9,6 +9,7 @@ def yes_no_input():
             print("Invalid input. Try (yes/no)")
 
 num = 1
+
 while True:
     #ask user for inputs like question, options, and correct answer
     questions = input(f"\nEnter question {num}: ")
@@ -28,11 +29,10 @@ while True:
     quiz_data.append(data_format)
 
     #open a json file to store the data
-    with open("json_text.json", "w") as file:
+    with open("json_text.json", "a") as file:
         json.dump(data_format, file, indent=4)
 
-    #asks the user to input another
-    again = yes_no_input()
+    again = yes_no_input()  # Get the result from the function
     num += 1
     if again != "yes":
         break
