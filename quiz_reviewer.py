@@ -21,7 +21,7 @@ def add_qstns():
             "question: ": questions,
             "option: ": options, 
             "correct answer: ": correct_answers
-        }
+        },
         #initialize a list
         quiz_data = []
 
@@ -37,15 +37,23 @@ def add_qstns():
         if again != "yes":
             break
 
-def main():
+def main(ask_activity):
     while True:
         ask_activity = input("Select Acivity:\na.) add questions\nb.) answer quiz\nc.) exit\n=> ").lower()
 
         if ask_activity == "a":
+            print("You can now add quiestions:\n")
             return add_qstns()
-            
+        
+        elif ask_activity == "b":
+            print("welcome to quiz reviewer")
+
         elif ask_activity == "c":
             print("exit...")
             break
-    
+        
+        else:
+            print("invalid, try again")
+        
 main()
+    
