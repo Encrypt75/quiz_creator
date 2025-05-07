@@ -1,29 +1,21 @@
 import json
 
-def yes_no_input():
-    while True:
-        again = input("Do you want to add another question? (yes/no): ").lower()
-        if again in ["yes", "no"]:
-            return again  # Return the valid input to use outside
-        else:
-            print("Invalid input. Try (yes/no)")
+#initialize a list
+quiz_data = []
 
-def add_qstns():
-    num = 1
-    while True:
+#where the loop begins
+while True: 
         #ask user for inputs like question, options, and correct answer
-        questions = input(f"\nEnter question {num}: ")
+        questions = input(f"\nEnter question: ")
         options = [input(f"Enter option {choice}: ") for choice in ["a", "b", "c", "d"]]
         correct_answers = input(f"Enter correct answer: ")
 
-        #dictionary for users' input
+        #creates dictionary for users' input
         data_format = {
             "question: ": questions,
             "option: ": options, 
             "correct answer: ": correct_answers
-        },
-        #initialize a list
-        quiz_data = []
+        }
 
         #then appends the input to the list
         quiz_data.append(data_format)
@@ -31,29 +23,8 @@ def add_qstns():
         #open a json file to store the data
         with open("json_text.json", "a") as file:
             json.dump(data_format, file, indent=4)
+        
+        try_again = input("add another question? (y/n): ").lower()
 
-        again = yes_no_input()  # Get the result from the function
-        num += 1
-        if again != "yes":
+        if try_again == "n":
             break
-
-def main(ask_activity):
-    while True:
-        ask_activity = input("Select Acivity:\na.) add questions\nb.) answer quiz\nc.) exit\n=> ").lower()
-
-        if ask_activity == "a":
-            print("You can now add quiestions:\n")
-            return add_qstns()
-        
-        elif ask_activity == "b":
-            print("welcome to quiz reviewer")
-
-        elif ask_activity == "c":
-            print("exit...")
-            break
-        
-        else:
-            print("invalid, try again")
-        
-main()
-    
