@@ -8,31 +8,44 @@ def yes_no_input():
         else:
             print("Invalid input. Try (yes/no)")
 
-num = 1
+def add_qstns():
+    num = 1
+    while True:
+        #ask user for inputs like question, options, and correct answer
+        questions = input(f"\nEnter question {num}: ")
+        options = [input(f"Enter option {choice}: ") for choice in ["a", "b", "c", "d"]]
+        correct_answers = input(f"Enter correct answer: ")
 
-while True:
-    #ask user for inputs like question, options, and correct answer
-    questions = input(f"\nEnter question {num}: ")
-    options = [input(f"Enter option {choice}: ") for choice in ["a", "b", "c", "d"]]
-    correct_answers = input(f"Enter correct answer: ")
+        #dictionary for users' input
+        data_format = {
+            "question: ": questions,
+            "option: ": options, 
+            "correct answer: ": correct_answers
+        }
+        #initialize a list
+        quiz_data = []
 
-    #dictionary for users' input
-    data_format = {
-        "question: ": questions,
-        "option: ": options, 
-        "correct answer: ": correct_answers
-    }
-    #initialize a list
-    quiz_data = []
+        #then appends the input to the list
+        quiz_data.append(data_format)
 
-    #then appends the input to the list
-    quiz_data.append(data_format)
+        #open a json file to store the data
+        with open("json_text.json", "a") as file:
+            json.dump(data_format, file, indent=4)
 
-    #open a json file to store the data
-    with open("json_text.json", "a") as file:
-        json.dump(data_format, file, indent=4)
+        again = yes_no_input()  # Get the result from the function
+        num += 1
+        if again != "yes":
+            break
 
-    again = yes_no_input()  # Get the result from the function
-    num += 1
-    if again != "yes":
-        break
+def main():
+    while True:
+        ask_activity = input("Select Acivity:\na.) add questions\nb.) answer quiz\nc.) exit\n=> ").lower()
+
+        if ask_activity == "a":
+            return add_qstns()
+            
+        elif ask_activity == "c":
+            print("exit...")
+            break
+    
+main()
