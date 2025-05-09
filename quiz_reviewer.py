@@ -41,3 +41,17 @@ while True:
 #open a json file to store the data
 with open("json_text.json", "w") as file:
     json.dump(data_format, file, indent=4)
+
+#main program
+def main_program():
+     while True:
+          choice = input("Program Menu:\na.) add questions\nb.) take a quiz\nc.) exit program\n=>").lower()
+
+          if choice == "a":
+               print("add quiestions")
+          elif choice == "b":
+               print("taking quiz")
+          elif choice == "c":
+               print("exiting...")
+          
+main_program()
