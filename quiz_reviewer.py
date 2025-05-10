@@ -31,25 +31,24 @@ def add_questions():
 
     #where the loop begins
     while True: 
-            #ask user for inputs like question, options, and correct answer
-            questions = input(f"\nEnter question: ")
-            options = [input(f"Enter option {choice}: ") for choice in ["a", "b", "c", "d"]]
-            correct_answers = input(f"Enter correct answer: ").lower()
+        #ask user for inputs like question, options, and correct answer
+        questions = input(f"\nEnter question: ")
+        options = [input(f"Enter option {choice}: ") for choice in ["a", "b", "c", "d"]]
+        correct_answers = input(f"Enter correct answer: ").lower()
 
-            #creates dictionary for users' input
-            data_format = {
-                "question: ": questions,
-                "option: ": options, 
-                "correct answer: ": correct_answers
-            }
+        #creates dictionary for users' input
+        data_format = {
+            "question: ": questions,
+            "option: ": options, 
+            "correct answer: ": correct_answers
+        }
 
-            #then appends the input to the list
-            quiz_data.append(data_format)
+        #then appends the input to the list
+        quiz_data.append(data_format)
 
-            try_again = input("add another question? (y/n): ").lower()
-
-            if try_again == "n" or try_again == "no":
-                break
+        try_again = input("add another question? (y/n): ").lower()
+        if try_again == "n" or try_again == "no":
+            break
 
     #open a json file to store the data
     with open("json_text.json", "w") as file:
@@ -78,14 +77,17 @@ def main_quiz():
 #main program
 def main_program():
      while True:
-          choice = input("\nProgram Menu:\na.) add questions\nb.) take a quiz\nc.) exit program\n=>").lower()
+        choice = input("\nProgram Menu:\na.) add questions\nb.) take a quiz\nc.) exit program\n=>").lower().strip()
 
-          if choice == "a":
-               add_questions()
-          elif choice == "b":
-               file_load()
-          elif choice == "c":
-               print("exiting...")
-               break
-          
+        if choice == "a":
+            add_questions()
+        elif choice == "b":
+            main_quiz()
+        elif choice == "c":
+            print("exiting...")
+            break
+        else:
+            print("invalid, try again")
+
+#callout the main funtion 
 main_program()
