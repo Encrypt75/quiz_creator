@@ -19,11 +19,15 @@ def file_load():
         with open("json_text.json", "r") as file:
             try:
                 quiz_data = json.load(file)
-                if not isinstance(quiz_data, list):
+                if isinstance(quiz_data, list):
                     return []
             except json.JSONDecodeError:
                     pass
     return [] 
+def data_saver(data_format):
+    #open a json file to store the data
+    with open("json_text.json", "w") as file:
+        json.dump(data_format, file, indent=4)
 
 def add_questions():
     #callout file_load()
@@ -49,10 +53,8 @@ def add_questions():
         try_again = input("add another question? (y/n): ").lower()
         if try_again == "n" or try_again == "no":
             break
-
-    #open a json file to store the data
-    with open("json_text.json", "w") as file:
-        json.dump(data_format, file, indent=4)
+    
+    data_saver(quiz_data)
 
 def main_quiz():
     quiz_data = file_load()
