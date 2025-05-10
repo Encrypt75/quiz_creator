@@ -11,36 +11,37 @@ def file_load():
                     return []
             except json.JSONDecodeError:
                     pass
-    return []
+    return [] 
 
-#callout file_load()
-quiz_data = file_load()   
+def add_questions():
+    #callout file_load()
+    quiz_data = file_load() 
 
-#where the loop begins
-while True: 
-        #ask user for inputs like question, options, and correct answer
-        questions = input(f"\nEnter question: ")
-        options = [input(f"Enter option {choice}: ") for choice in ["a", "b", "c", "d"]]
-        correct_answers = input(f"Enter correct answer: ").lower()
+    #where the loop begins
+    while True: 
+            #ask user for inputs like question, options, and correct answer
+            questions = input(f"\nEnter question: ")
+            options = [input(f"Enter option {choice}: ") for choice in ["a", "b", "c", "d"]]
+            correct_answers = input(f"Enter correct answer: ").lower()
 
-        #creates dictionary for users' input
-        data_format = {
-            "question: ": questions,
-            "option: ": options, 
-            "correct answer: ": correct_answers
-        }
+            #creates dictionary for users' input
+            data_format = {
+                "question: ": questions,
+                "option: ": options, 
+                "correct answer: ": correct_answers
+            }
 
-        #then appends the input to the list
-        quiz_data.append(data_format)
+            #then appends the input to the list
+            quiz_data.append(data_format)
 
-        try_again = input("add another question? (y/n): ").lower()
+            try_again = input("add another question? (y/n): ").lower()
 
-        if try_again == "n" or try_again == "no":
-            break
+            if try_again == "n" or try_again == "no":
+                break
 
-#open a json file to store the data
-with open("json_text.json", "w") as file:
-    json.dump(data_format, file, indent=4)
+    #open a json file to store the data
+    with open("json_text.json", "w") as file:
+        json.dump(data_format, file, indent=4)
 
 #main program
 def main_program():
@@ -48,7 +49,7 @@ def main_program():
           choice = input("Program Menu:\na.) add questions\nb.) take a quiz\nc.) exit program\n=>").lower()
 
           if choice == "a":
-               print("add quiestions")
+               add_questions()
           elif choice == "b":
                print("taking quiz")
           elif choice == "c":
