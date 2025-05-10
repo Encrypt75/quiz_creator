@@ -1,5 +1,17 @@
 import json
 import os
+import random
+
+comments = [
+     "Wow you are great",
+     "How do you know that one?",
+     "You are bright",
+     "Are you trying to ace it?",
+     "Nice!",
+     "Is is just me? but you are killing it"
+]
+
+rand_cmmnts = random.choice(comments)
 
 #loads data from a json file
 def file_load():
@@ -43,16 +55,37 @@ def add_questions():
     with open("json_text.json", "w") as file:
         json.dump(data_format, file, indent=4)
 
+def main_quiz():
+    quiz_data = file_load()
+    if not quiz_data:
+        print("No questions was saved yet")
+        return
+    
+    #shuffles the data from json
+    random.shuffle(quiz_data)
+
+    for quiz in quiz_data:
+        print(f"\n{quiz['question']}")
+        for letter, options in zip(["a", "b", "c", "d"], quiz["option"]):
+            print(f"{letter}. {options}")
+        answer = input("your answer: ").lower()
+        if answer == quiz["correct_answer"]:
+            print(rand_cmmnts)
+
+        else:
+            print(f"Incorrect. The correct answer was: {quiz['correct_answer']}")
+
 #main program
 def main_program():
      while True:
-          choice = input("Program Menu:\na.) add questions\nb.) take a quiz\nc.) exit program\n=>").lower()
+          choice = input("\nProgram Menu:\na.) add questions\nb.) take a quiz\nc.) exit program\n=>").lower()
 
           if choice == "a":
                add_questions()
           elif choice == "b":
-               print("taking quiz")
+               file_load()
           elif choice == "c":
                print("exiting...")
+               break
           
 main_program()
