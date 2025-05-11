@@ -8,10 +8,22 @@ comments = [
      "You are bright",
      "Are you trying to ace it?",
      "Nice!",
-     "Is is just me? but you are killing it"
+     "Is is just me? or are you killing it"
 ]
 
 rand_cmmnts = random.choice(comments)
+
+#error handling
+def valid_input(correct_letter):
+    valid_input_for_choices = ["a", "b", "c", "d"]
+
+    while True:
+        select = input(correct_letter).lower()
+
+        if select in valid_input_for_choices:
+            return select
+        else:
+            print("Invalid input, try again")
 
 #loads data from a json file
 def file_load():
@@ -20,10 +32,11 @@ def file_load():
             try:
                 quiz_data = json.load(file)
                 if isinstance(quiz_data, list):
-                    return []
+                    return quiz_data
             except json.JSONDecodeError:
                     pass
     return [] 
+
 def data_saver(data_format):
     #open a json file to store the data
     with open("json_text.json", "w") as file:
@@ -38,13 +51,13 @@ def add_questions():
         #ask user for inputs like question, options, and correct answer
         questions = input(f"\nEnter question: ")
         options = [input(f"Enter option {choice}: ") for choice in ["a", "b", "c", "d"]]
-        correct_answers = input(f"Enter correct answer: ").lower()
+        correct_answers = valid_input(f"Enter correct answer: ").lower()
 
         #creates dictionary for users' input
         data_format = {
-            "question: ": questions,
-            "option: ": options, 
-            "correct answer: ": correct_answers
+            "question": questions,
+            "option": options, 
+            "correct answer": correct_answers
         }
 
         #then appends the input to the list
@@ -67,9 +80,10 @@ def main_quiz():
 
     for quiz in quiz_data:
         print(f"\n{quiz['question']}")
-        for letter, options in zip(["a", "b", "c", "d"], quiz["option"]):
-            print(f"{letter}. {options}")
-        answer = input("your answer: ").lower()
+        for letter, opt in zip(["a", "b", "c", "d"], quiz["option"]):
+            print(f"{letter}. {opt}")
+
+        answer = valid_input("your answer: ").lower()
         if answer == quiz["correct_answer"]:
             print(rand_cmmnts)
 
@@ -79,7 +93,7 @@ def main_quiz():
 #main program
 def main_program():
      while True:
-        choice = input("\nProgram Menu:\na.) add questions\nb.) take a quiz\nc.) exit program\n=>").lower().strip()
+        choice = valid_input("\nProgram Menu:\na.) add questions\nb.) take a quiz\nc.) exit program\n=> ").lower().strip()
 
         if choice == "a":
             add_questions()
