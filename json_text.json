@@ -1,0 +1,52 @@
+[
+    {
+        "question": "what do you call on the lines that can be found behind the motherboard?",
+        "option": [
+            "superlines",
+            "bus",
+            "transistors",
+            "boardlines"
+        ],
+        "correct_answer": "b"
+    },
+    {
+        "question": "what python command used to show text in the terminal?",
+        "option": [
+            "show(\"\")",
+            "console.log()",
+            "print()",
+            "none of these choices"
+        ],
+        "correct_answer": "c"
+    },
+    {
+        "question": "complete the phrase: \"an ____ a day makes a ____ away\"",
+        "option": [
+            "orange, doctor",
+            "apple, pilot",
+            "apple, doctor",
+            "orange, pilot"
+        ],
+        "correct_answer": "c"
+    },
+    {
+        "question": "have you voted already?",
+        "option": [
+            "yes",
+            "no, active",
+            "no, inactive",
+            "PROUDLY YES"
+        ],
+        "correct_answer": "d"
+    },
+    {
+        "question": "what to call a burger dancing?",
+        "option": [
+            "a dancing burger",
+            "shakey patty",
+            "a-bun-dance",
+            "none"
+        ],
+        "correct_answer": "c"
+    }
+]
