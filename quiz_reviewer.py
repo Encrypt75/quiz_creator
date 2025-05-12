@@ -1,14 +1,17 @@
 import json
 import os
 import random
+from colorama import init, Fore, Style
+
+init()
 
 comments = [
-     "Wow you are great",
-     "How do you know that one?",
-     "You are bright",
-     "Are you trying to ace it?",
-     "Nice!",
-     "Is is just me? or are you killing it"
+     "wow you are great",
+     "how do you know that one?",
+     "you are bright",
+     "are you trying to ace it?",
+     "nice!",
+     "is is just me? or are you killing it"
 ]
 
 rand_cmmnts = random.choice(comments)
@@ -49,7 +52,7 @@ def add_questions():
     #where the loop begins
     while True: 
         #ask user for inputs like question, options, and correct answer
-        questions = input(f"\nEnter question: ")
+        questions = input(Fore.YELLOW + Style.BRIGHT + f"\nEnter question: " + Style.RESET_ALL)
         options = [input(f"Enter option {choice}: ") for choice in ["a", "b", "c", "d"]]
         correct_answers = valid_input(f"Enter correct answer: ").lower()
 
@@ -57,7 +60,7 @@ def add_questions():
         data_format = {
             "question": questions,
             "option": options, 
-            "correct answer": correct_answers
+            "correct_answer": correct_answers
         }
 
         #then appends the input to the list
@@ -66,7 +69,7 @@ def add_questions():
         try_again = input("add another question? (y/n): ").lower()
         if try_again == "n" or try_again == "no":
             break
-    
+            
     data_saver(quiz_data)
 
 def main_quiz():
@@ -79,21 +82,21 @@ def main_quiz():
     random.shuffle(quiz_data)
 
     for quiz in quiz_data:
-        print(f"\n{quiz['question']}")
+        print(Fore.BLUE + Style.BRIGHT + f"\n{quiz['question']}" + Style.RESET_ALL)
         for letter, opt in zip(["a", "b", "c", "d"], quiz["option"]):
-            print(f"{letter}. {opt}")
+            print(Fore.YELLOW + f"{letter}. {opt}" + Style.RESET_ALL)
 
         answer = valid_input("your answer: ").lower()
         if answer == quiz["correct_answer"]:
-            print(rand_cmmnts)
+            print(Fore.GREEN + Style.BRIGHT + f"correct, {rand_cmmnts}"+ Style.RESET_ALL)
 
         else:
-            print(f"Incorrect. The correct answer was: {quiz['correct_answer']}")
+            print(Fore.RED + Style.BRIGHT + f"Incorrect. The correct answer was: {quiz['correct_answer']}" + Style.RESET_ALL)
 
 #main program
 def main_program():
      while True:
-        choice = valid_input("\nProgram Menu:\na.) add questions\nb.) take a quiz\nc.) exit program\n=> ").lower().strip()
+        choice = valid_input(Fore.MAGENTA + "\nProgram Menu:\na.) add questions\nb.) take a quiz\nc.) exit program\n=> " + Style.RESET_ALL).lower().strip()
 
         if choice == "a":
             add_questions()
