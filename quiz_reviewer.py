@@ -78,10 +78,26 @@ def main_quiz():
         print("No questions was saved yet")
         return
     
+    #checks the how many questions are there
+    qstns_available = len(quiz_data)
+
+    #asks the user how many question would they want to take
+    while True:
+        try:
+            qstns_cnt = int(input(f"How many questions will you take? (1 to {qstns_available}): "))
+            if 1 <= qstns_cnt <= qstns_available:
+                break
+            else:
+                print(f"Please enter a number between 1 and {qstns_available}.")
+        except ValueError:
+            print("Please enter a valid number.")
+
     #shuffles the data from json
     random.shuffle(quiz_data)
+    selected_questions = quiz_data[:qstns_cnt]
     init_score = 0
-    for quiz in quiz_data:
+
+    for quiz in selected_questions:
         print(Fore.BLUE + Style.BRIGHT + f"\n{quiz['question']}" + Style.RESET_ALL)
         for letter, opt in zip(["a", "b", "c", "d"], quiz["option"]):
             print(Fore.YELLOW + f"{letter}. {opt}" + Style.RESET_ALL)
@@ -94,14 +110,14 @@ def main_quiz():
         else:
             print(Fore.RED + Style.BRIGHT + f"Incorrect. The correct answer was: {quiz['correct_answer']}" + Style.RESET_ALL)
     
-    if init_score == len(quiz_data):
-        print(f"PERFECT!\nscore: {init_score}/{len(quiz_data)}")
+    if init_score == qstns_cnt:
+        print(f"PERFECT!\nscore: {init_score}/{qstns_cnt}")
 
-    elif init_score >= 0.75 * int(len(quiz_data)):
-        print(f"CONGRATS!\nscore: {init_score}/{len(quiz_data)}")
+    elif init_score >= 0.75 * qstns_cnt:
+        print(f"CONGRATS!\nscore: {init_score}/{qstns_cnt}")
 
     else:
-        print(f"you did great, try again next time\nscore: {init_score}/{len(quiz_data)}")
+        print(f"you did great, try again next time\nscore: {init_score}/{qstns_cnt}")
 
 #main program
 def main_program():
