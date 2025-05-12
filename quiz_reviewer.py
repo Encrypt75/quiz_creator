@@ -80,7 +80,7 @@ def main_quiz():
     
     #shuffles the data from json
     random.shuffle(quiz_data)
-
+    init_score = 0
     for quiz in quiz_data:
         print(Fore.BLUE + Style.BRIGHT + f"\n{quiz['question']}" + Style.RESET_ALL)
         for letter, opt in zip(["a", "b", "c", "d"], quiz["option"]):
@@ -89,9 +89,19 @@ def main_quiz():
         answer = valid_input("your answer: ").lower()
         if answer == quiz["correct_answer"]:
             print(Fore.GREEN + Style.BRIGHT + f"correct, {rand_cmmnts}"+ Style.RESET_ALL)
+            init_score += 1
 
         else:
             print(Fore.RED + Style.BRIGHT + f"Incorrect. The correct answer was: {quiz['correct_answer']}" + Style.RESET_ALL)
+    
+    if init_score == len(quiz_data):
+        print(f"PERFECT!\nscore: {init_score}/{len(quiz_data)}")
+
+    elif init_score >= 0.75 * int(len(quiz_data)):
+        print(f"CONGRATS!\nscore: {init_score}/{len(quiz_data)}")
+
+    else:
+        print(f"you did great, try again next time\nscore: {init_score}/{len(quiz_data)}")
 
 #main program
 def main_program():
